@@ -803,16 +803,16 @@ standard deviation times <code class="docutils literal"><span class="pre">mode</
 </tbody>
 </table>
 <p>Examples:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">ranges</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">tr</span><span class="p">:</span> <span class="n">tr</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
-<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s">&#39;N&#39;</span><span class="p">]</span>   <span class="c"># print min &amp; max of all traces with channel == &#39;N&#39;</span>
-<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s">&#39;E&#39;</span><span class="p">]</span>   <span class="c"># print min &amp; max of all traces with channel == &#39;E&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ranges</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">tr</span><span class="p">:</span> <span class="n">tr</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">]</span>   <span class="c1"># print min &amp; max of all traces with channel == &#39;N&#39;</span>
+<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>   <span class="c1"># print min &amp; max of all traces with channel == &#39;E&#39;</span>
 
 <span class="n">ranges</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">tr</span><span class="p">:</span> <span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">tr</span><span class="o">.</span><span class="n">station</span><span class="p">))</span>
-<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s">&#39;GR&#39;</span><span class="p">,</span> <span class="s">&#39;HAM3&#39;</span><span class="p">]</span>  <span class="c"># print min &amp; max of all traces with</span>
-                            <span class="c"># network == &#39;GR&#39; and station == &#39;HAM3&#39;</span>
+<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s1">&#39;GR&#39;</span><span class="p">,</span> <span class="s1">&#39;HAM3&#39;</span><span class="p">]</span>  <span class="c1"># print min &amp; max of all traces with</span>
+                            <span class="c1"># network == &#39;GR&#39; and station == &#39;HAM3&#39;</span>
 
-<span class="n">ranges</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">tr</span><span class="p">:</span> <span class="k">None</span><span class="p">)</span>
-<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="k">None</span><span class="p">]</span>  <span class="c"># prints min &amp; max of all traces</span>
+<span class="n">ranges</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">tr</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span>  <span class="c1"># prints min &amp; max of all traces</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -984,10 +984,10 @@ versions of NumPy, where the correlate function has some problems.</p>
 information of the output trace is set so that the returned cross
 correlation can be viewed directly as a function of time lag.</p>
 <p>Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="c"># align two traces a and b containing a time shifted similar signal:</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># align two traces a and b containing a time shifted similar signal:</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">pyrocko</span><span class="o">.</span><span class="n">trace</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
-<span class="n">t</span><span class="p">,</span> <span class="n">coef</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>  <span class="c"># get time and value of maximum</span>
-<span class="n">b</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>        <span class="c"># align b with a</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">coef</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>  <span class="c1"># get time and value of maximum</span>
+<span class="n">b</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>        <span class="c1"># align b with a</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1233,7 +1233,7 @@ deconvolution of instrument response.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre>                  <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">zeros</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="o">...</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span>                  <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">zeros</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="o">...</span>
 <span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">=</span> <span class="n">constant</span> <span class="o">*</span> <span class="o">----------------------------------------------------</span>
                   <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">poles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">poles</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="o">...</span>
 </pre></div>
@@ -1362,7 +1362,7 @@ function.</li>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre>            <span class="n">gain</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span>            <span class="n">gain</span>
 <span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">=</span> <span class="o">--------------</span>
        <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span><span class="p">)</span><span class="o">^</span><span class="n">n</span>
 </pre></div>
@@ -1397,7 +1397,7 @@ function.</li>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">=</span> <span class="n">gain</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span><span class="p">)</span><span class="o">^</span><span class="n">n</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">=</span> <span class="n">gain</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span><span class="p">)</span><span class="o">^</span><span class="n">n</span>
 </pre></div>
 </div>
 <dl class="gattribute">
@@ -1542,7 +1542,7 @@ multichannel or multistation data with only one <a class="reference internal" hr
 instance.</p>
 <p>Filter state is reset, when gaps occur.</p>
 <p>Use it like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyrocko.trace</span> <span class="k">import</span> <span class="n">co_lfilter</span><span class="p">,</span> <span class="n">co_list_append</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyrocko.trace</span> <span class="k">import</span> <span class="n">co_lfilter</span><span class="p">,</span> <span class="n">co_list_append</span>
 
 <span class="n">filtered_traces</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">co_lfilter</span><span class="p">(</span><span class="n">co_list_append</span><span class="p">(</span><span class="n">filtered_traces</span><span class="p">),</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>

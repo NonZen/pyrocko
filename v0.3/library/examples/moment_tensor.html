@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Moment Tensor Operations &#8212; Pyrocko v0.3 Manual</title>
+    
+    <link rel="stylesheet" href="../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/sidebar.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Pyrocko v0.3 Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Geodesic functions" href="orthodrome.html" />
+    <link rel="prev" title="Earthquake catalog search" href="catalog_search.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+    
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../index.html">Pyrocko v0.3 Manual</a> &#187;</li>
+          <li><a href="../index.html" >Library</a> &#187;</li>
+          <li><a href="index.html" accesskey="U">Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="moment-tensor-operations">
+<h1>Moment Tensor Operations<a class="headerlink" href="#moment-tensor-operations" title="Permalink to this headline">¶</a></h1>
+<p>Transformations to and from Moment Tensor using the <a class="reference internal" href="../reference/moment_tensor.html#module-pyrocko.moment_tensor" title="pyrocko.moment_tensor"><code class="xref py py-class docutils literal"><span class="pre">pyrocko.moment_tensor</span></code></a> modules.
+Conversion between Global Centroid Moment tensors format with pointing upward, southward, and eastward (Up-South-East; USE) system to geographic Cartesian tensor (North-Eeast-Down; NED) transforms by:</p>
+<div class="math">
+<p><img src="../../_images/math/b1b993c9abfb5242b9bb858b9609cc6b3fa3fbca.svg" alt="\begin{align*}
+    M_{rr} &amp;= M_{dd}, &amp; M_{  r\theta} &amp;= M_{nd},\\
+    M_{\theta\theta} &amp;= M_{ nn}, &amp; M_{r\phi} &amp;= -M_{ed},\\
+    M_{\phi\phi} &amp;=  M_{ee}, &amp; M_{\theta\phi} &amp;= -M_{ne}
+\end{align*}"/></p>
+</div><div class="section" id="convert-moment-tensor-components-to-strike-dip-and-rake">
+<h2>Convert Moment Tensor components to strike, dip and rake<a class="headerlink" href="#convert-moment-tensor-components-to-strike-dip-and-rake" title="Permalink to this headline">¶</a></h2>
+<p>Moment Tensor construction is shown by using the moment components
+and conversion to strike, dip and rake.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyrocko</span> <span class="k">import</span> <span class="n">moment_tensor</span> <span class="k">as</span> <span class="n">mtm</span>
+<span class="n">magnitude</span> <span class="o">=</span> <span class="mf">6.3</span>  <span class="c1"># Magnitude of the earthquake</span>
+
+<span class="n">exp</span> <span class="o">=</span> <span class="n">mtm</span><span class="o">.</span><span class="n">magnitude_to_moment</span><span class="p">(</span><span class="n">magnitude</span><span class="p">)</span>  <span class="c1"># convert the mag to moment in [Nm]</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">mtm</span><span class="o">.</span><span class="n">MomentTensor</span><span class="p">()</span>  <span class="c1"># init pyrocko moment tensor</span>
+<span class="n">m</span><span class="o">.</span><span class="n">mnn</span> <span class="o">=</span> <span class="mf">2.34</span><span class="o">*</span><span class="n">exp</span>
+<span class="n">m</span><span class="o">.</span><span class="n">mee</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.64</span><span class="o">*</span><span class="n">exp</span>
+<span class="n">m</span><span class="o">.</span><span class="n">mdd</span> <span class="o">=</span> <span class="mf">0.295</span><span class="o">*</span><span class="n">exp</span>
+<span class="n">m</span><span class="o">.</span><span class="n">mne</span> <span class="o">=</span> <span class="mf">1.49</span><span class="o">*</span><span class="n">exp</span>
+<span class="n">m</span><span class="o">.</span><span class="n">mnd</span> <span class="o">=</span> <span class="mf">0.182</span><span class="o">*</span><span class="n">exp</span>
+<span class="n">m</span><span class="o">.</span><span class="n">med</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.975</span><span class="o">*</span><span class="n">exp</span>
+<span class="nb">print</span> <span class="n">m</span>  <span class="c1"># print moment tensor</span>
+<span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">both_strike_dip_rake</span><span class="p">()</span>  <span class="c1"># gives out both nodal pl.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="strike-dip-and-rake-to-moment-tensor">
+<h2>Strike, dip and rake to Moment Tensor<a class="headerlink" href="#strike-dip-and-rake-to-moment-tensor" title="Permalink to this headline">¶</a></h2>
+<p>Conversion from strike, dip and rake to the Moment Tensor. Afterwards
+we normalize the Moment Tensor.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyrocko</span> <span class="k">import</span> <span class="n">moment_tensor</span> <span class="k">as</span> <span class="n">mtm</span>
+
+<span class="n">magnitude</span> <span class="o">=</span> <span class="mf">6.3</span>  <span class="c1"># Magnitude of the earthquake</span>
+
+<span class="n">m0</span> <span class="o">=</span> <span class="n">mtm</span><span class="o">.</span><span class="n">magnitude_to_moment</span><span class="p">(</span><span class="n">magnitude</span><span class="p">)</span>  <span class="c1"># convert the mag to moment</span>
+
+<span class="n">strike</span> <span class="o">=</span> <span class="mi">130</span>
+<span class="n">dip</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">rake</span> <span class="o">=</span> <span class="mi">110</span>
+<span class="n">mt</span> <span class="o">=</span> <span class="n">mtm</span><span class="o">.</span><span class="n">MomentTensor</span><span class="p">(</span><span class="n">strike</span><span class="o">=</span><span class="n">strike</span><span class="p">,</span> <span class="n">dip</span><span class="o">=</span><span class="n">dip</span><span class="p">,</span> <span class="n">rake</span><span class="o">=</span><span class="n">rake</span><span class="p">,</span> <span class="n">scalar_moment</span><span class="o">=</span><span class="n">m0</span><span class="p">)</span>
+
+<span class="n">m6</span> <span class="o">=</span> <span class="p">[</span><span class="n">mt</span><span class="o">.</span><span class="n">mnn</span><span class="p">,</span> <span class="n">mt</span><span class="o">.</span><span class="n">mee</span><span class="p">,</span> <span class="n">mt</span><span class="o">.</span><span class="n">mdd</span><span class="p">,</span> <span class="n">mt</span><span class="o">.</span><span class="n">mne</span><span class="p">,</span> <span class="n">mt</span><span class="o">.</span><span class="n">mnd</span><span class="p">,</span> <span class="n">mt</span><span class="o">.</span><span class="n">med</span><span class="p">]</span>  <span class="c1"># The six MT components</span>
+<span class="nb">print</span> <span class="n">m6</span><span class="o">/</span><span class="n">mt</span><span class="o">.</span><span class="n">scalar_moment</span><span class="p">()</span>  <span class="c1"># normalized MT components</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+    &nbsp;
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="orthodrome.html" title="Geodesic functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="catalog_search.html" title="Earthquake catalog search"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, The Pyrocko Developers.
+    </div>
+  </body>
+</html>
