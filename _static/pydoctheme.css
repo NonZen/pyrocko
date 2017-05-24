@@ -703,9 +703,25 @@ div.icon-button-group {
 span.doi {
     background-color: #F5F5F5;
     border-color: #EEEEEE;
+    box-shadow: none;
+    float: right;
 }
 
 span.doi a {
     font-size: 70%;
+    color: #616161;
+}
+
+span.doi a:visited {
+    color: #616161;
+}
+
+span.doi i {
+    color: #757575;
+}
+
+div.application-tags {
+    clear: both;
+    padding-top: 0.5em;
 }
 
