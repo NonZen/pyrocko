@@ -248,19 +248,15 @@ estimation problems.
         </span>
     </div>
 
-
 Kite
 ----
+
 .. raw:: html
     
     <div class="application-information application-standalone">
         <span class="tag">
             <i class="fa fa-github" aria-hidden="true"></i>
-            <a href="https://github.com/pyrocko/kite">Download</a>
-        </span>
-        <span class="tag">
-            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-            <a href="https://pyrocko.github.io/kite/">Documentation</a>
+            <a href="https://github.com/pyrocko/kite">Download and Installation</a>
         </span>
     </div>
 
@@ -270,6 +266,40 @@ Kite
     :align: left
 
 Get your InSAR displacement maps handled the pyrocko way (and prepared for the deformation source analysis in pyrocko). Experience a highly interactive inspection of static displacement fields and data noise. Do easy quadtree data subsampling and data error variance-covariance estimation of InSAR data for proper data weighting in deformation source optimizations.
+
+.. raw:: html
+    
+    <div class="application-tags">
+        <span class="tag">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            <a href="https://pyrocko.github.io/kite/">Tutorials and Documentation</a>
+        </span>
+        <span class="tag doi">
+            <i class="fa fa-university" aria-hidden="true"></i>
+            <a href="">DOI: In Preparation</a>
+        </span>
+    </div>
+
+
+Talpa
+-----
+
+.. raw:: html
+    
+    <div class="application-information">
+        <span class="tag">
+            <i class="fa fa-tag" aria-hidden="true"></i>
+            <a href="https://github.com/pyrocko/kite">Part of Kite</a>
+        </span>
+    </div>
+
+*Interactive static displacement modelling*
+
+.. image:: _static/talpa_screenshot.png
+    :align: left
+
+
+Fault ruptures and volcanic plumbing systems are complex and highly interactive processes which take place in heterogeneous composition of the Earth’s crust. To intuitively study the complexities, we developed a graphical tool to interact and link observed surface displacements with deformation sources. This may guide as a first measure and constrain future finite numerical optimisation. Talpa, the mole, provides interfaces to different displacement codes and models, one beeing ``pyrocko.gf``.
 
 .. raw:: html
     
