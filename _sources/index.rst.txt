@@ -322,6 +322,6 @@ Publications
 
 .. meta::
     :description: Pyrocko is an open source seismology environment.
-    :keywords: Seismology, Earthquake, Geodesy, Earth, Science, Software, Python, software development, open source,
-    :audience: scientists, students, researcher, software developer
+    :keywords: Seismology, Earthquake, Geodesy, Earth, Science, Software, Python, software development, open-source, modelling, waveforms, processing, insar, surface deformation
+    :audience: scientists, students, researcher, software developer, universities, institutes
     :robots: index, follow
