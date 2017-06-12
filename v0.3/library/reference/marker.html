@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The marker module &#8212; Pyrocko v0.3 Manual</title>
+    
+    <link rel="stylesheet" href="../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/sidebar.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Pyrocko v0.3 Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The model module" href="model.html" />
+    <link rel="prev" title="The io module" href="io.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+    
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../index.html">Pyrocko v0.3 Manual</a> &#187;</li>
+          <li><a href="../index.html" >Library</a> &#187;</li>
+          <li><a href="index.html" accesskey="U">Reference</a> &#187;</li> 
+      </ul>
+    </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pyrocko.marker">
+<span id="the-marker-module"></span><h1>The <code class="xref py py-mod docutils literal"><span class="pre">marker</span></code> module<a class="headerlink" href="#module-pyrocko.marker" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pyrocko.marker.Marker">
+<em class="property">class </em><code class="descname">Marker</code><span class="sig-paren">(</span><em>nslc_ids</em>, <em>tmin</em>, <em>tmax</em>, <em>kind=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker" title="Permalink to this definition">¶</a></dt>
+<dd><p>General purpose marker GUI element and base class for
+<a class="reference internal" href="#pyrocko.marker.EventMarker" title="pyrocko.marker.EventMarker"><code class="xref py py-class docutils literal"><span class="pre">EventMarker</span></code></a> and <a class="reference internal" href="#pyrocko.marker.PhaseMarker" title="pyrocko.marker.PhaseMarker"><code class="xref py py-class docutils literal"><span class="pre">PhaseMarker</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nslc_ids</strong> &#8211; list of (network, station, location, channel) tuples
+(may contain wildcards)</li>
+<li><strong>tmin</strong> &#8211; start time</li>
+<li><strong>tmax</strong> &#8211; end time</li>
+<li><strong>kind</strong> &#8211; (optional) integer to distinguish groups of markers
+(color-coded)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="pyrocko.marker.Marker.save_markers">
+<em class="property">static </em><code class="descname">save_markers</code><span class="sig-paren">(</span><em>markers</em>, <em>fn</em>, <em>fdigits=3</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.save_markers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.save_markers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static method to write marker objects to file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>markers</strong> &#8211; list of <a class="reference internal" href="#pyrocko.marker.Marker" title="pyrocko.marker.Marker"><code class="xref py py-class docutils literal"><span class="pre">Marker</span></code></a> objects</li>
+<li><strong>fn</strong> &#8211; filename as string</li>
+<li><strong>fdigits</strong> &#8211; number of decimal digits to use for sub-second time
+strings (default 3)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="pyrocko.marker.Marker.load_markers">
+<em class="property">static </em><code class="descname">load_markers</code><span class="sig-paren">(</span><em>fn</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.load_markers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.load_markers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static method to load markers from file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> &#8211; filename as string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of <a class="reference internal" href="#pyrocko.marker.Marker" title="pyrocko.marker.Marker"><code class="xref py py-class docutils literal"><span class="pre">Marker</span></code></a>, <a class="reference internal" href="#pyrocko.marker.EventMarker" title="pyrocko.marker.EventMarker"><code class="xref py py-class docutils literal"><span class="pre">EventMarker</span></code></a> or
+<a class="reference internal" href="#pyrocko.marker.PhaseMarker" title="pyrocko.marker.PhaseMarker"><code class="xref py py-class docutils literal"><span class="pre">PhaseMarker</span></code></a> objects</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrocko.marker.Marker.set">
+<code class="descname">set</code><span class="sig-paren">(</span><em>nslc_ids</em>, <em>tmin</em>, <em>tmax</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set <code class="docutils literal"><span class="pre">nslc_ids</span></code>, start time and end time of <a class="reference internal" href="#pyrocko.marker.Marker" title="pyrocko.marker.Marker"><code class="xref py py-class docutils literal"><span class="pre">Marker</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nslc_ids</strong> &#8211; list or set of (network, station, location, channel)
+tuples</li>
+<li><strong>tmin</strong> &#8211; start time</li>
+<li><strong>tmax</strong> &#8211; end time</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrocko.marker.Marker.set_kind">
+<code class="descname">set_kind</code><span class="sig-paren">(</span><em>kind</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.set_kind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.set_kind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set kind of <a class="reference internal" href="#pyrocko.marker.Marker" title="pyrocko.marker.Marker"><code class="xref py py-class docutils literal"><span class="pre">Marker</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>kind</strong> &#8211; (optional) integer to distinguish groups of markers
+(color-coded)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrocko.marker.Marker.get_tmin">
+<code class="descname">get_tmin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.get_tmin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.get_tmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get <em>start time</em> of <a class="reference internal" href="#pyrocko.marker.Marker" title="pyrocko.marker.Marker"><code class="xref py py-class docutils literal"><span class="pre">Marker</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrocko.marker.Marker.get_tmax">
+<code class="descname">get_tmax</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.get_tmax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.get_tmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get <em>end time</em> of <a class="reference internal" href="#pyrocko.marker.Marker" title="pyrocko.marker.Marker"><code class="xref py py-class docutils literal"><span class="pre">Marker</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrocko.marker.Marker.get_nslc_ids">
+<code class="descname">get_nslc_ids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.get_nslc_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.get_nslc_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get marker&#8217;s network-station-location-channel pattern.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list or set of (network, station, location, channel) tuples</td>
+</tr>
+</tbody>
+</table>
+<p>The network, station, location, or channel strings may contain wildcard
+expressions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrocko.marker.Marker.match_nsl">
+<code class="descname">match_nsl</code><span class="sig-paren">(</span><em>nsl</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.match_nsl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.match_nsl" title="Permalink to this definition">¶</a></dt>
+<dd><p>See documentation of <a class="reference internal" href="util.html#pyrocko.util.match_nslc" title="pyrocko.util.match_nslc"><code class="xref py py-func docutils literal"><span class="pre">pyrocko.util.match_nslc()</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrocko.marker.Marker.match_nslc">
+<code class="descname">match_nslc</code><span class="sig-paren">(</span><em>nslc</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.match_nslc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.match_nslc" title="Permalink to this definition">¶</a></dt>
+<dd><p>See documentation of <a class="reference internal" href="util.html#pyrocko.util.match_nslc" title="pyrocko.util.match_nslc"><code class="xref py py-func docutils literal"><span class="pre">pyrocko.util.match_nslc()</span></code></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrocko.marker.Marker.one_nslc">
+<code class="descname">one_nslc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.one_nslc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.one_nslc" title="Permalink to this definition">¶</a></dt>
+<dd><p>If one <em>nslc_id</em> defines this marker return this id.
+If more than one <em>nslc_id</em> is defined in the <code class="xref py py-class docutils literal"><span class="pre">Marker`s</span>
+<span class="pre">*nslc_ids*</span> <span class="pre">raise</span> <span class="pre">:py:exc:`MarkerOneNSLCRequired</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrocko.marker.Marker.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#Marker.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.Marker.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a copy of this marker.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrocko.marker.EventMarker">
+<em class="property">class </em><code class="descname">EventMarker</code><span class="sig-paren">(</span><em>event</em>, <em>kind=0</em>, <em>event_hash=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#EventMarker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.EventMarker" title="Permalink to this definition">¶</a></dt>
+<dd><p>An EventMarker is a GUI element representing a seismological event</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>event</strong> &#8211; A <a class="reference internal" href="model.html#pyrocko.model.Event" title="pyrocko.model.Event"><code class="xref py py-class docutils literal"><span class="pre">pyrocko.model.Event</span></code></a> object containing meta
+information of a seismological event</li>
+<li><strong>kind</strong> &#8211; (optional) integer to distinguish groups of markers</li>
+<li><strong>event_hash</strong> &#8211; (optional) hash code of event (see:
+<code class="xref py py-meth docutils literal"><span class="pre">pyrocko.model.Event.get_hash()</span></code>)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pyrocko.marker.EventMarker.get_event">
+<code class="descname">get_event</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#EventMarker.get_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.EventMarker.get_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an instance of the <a class="reference internal" href="model.html#pyrocko.model.Event" title="pyrocko.model.Event"><code class="xref py py-class docutils literal"><span class="pre">pyrocko.model.Event</span></code></a> associated
+to this <a class="reference internal" href="#pyrocko.marker.EventMarker" title="pyrocko.marker.EventMarker"><code class="xref py py-class docutils literal"><span class="pre">EventMarker</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrocko.marker.PhaseMarker">
+<em class="property">class </em><code class="descname">PhaseMarker</code><span class="sig-paren">(</span><em>nslc_ids</em>, <em>tmin</em>, <em>tmax</em>, <em>kind=0</em>, <em>event=None</em>, <em>event_hash=None</em>, <em>event_time=None</em>, <em>phasename=None</em>, <em>polarity=None</em>, <em>automatic=None</em>, <em>incidence_angle=None</em>, <em>takeoff_angle=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#PhaseMarker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.PhaseMarker" title="Permalink to this definition">¶</a></dt>
+<dd><p>A PhaseMarker is a GUI-element representing a seismological phase arrival</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nslc_ids</strong> &#8211; list of (network, station, location, channel) tuples (may
+contain wildcards)</li>
+<li><strong>tmin</strong> &#8211; start time</li>
+<li><strong>tmax</strong> &#8211; end time</li>
+<li><strong>kind</strong> &#8211; (optional) integer to distinguish groups of markers
+(color-coded)</li>
+<li><strong>event</strong> &#8211; a <a class="reference internal" href="model.html#pyrocko.model.Event" title="pyrocko.model.Event"><code class="xref py py-class docutils literal"><span class="pre">pyrocko.model.Event</span></code></a> object containing meta
+information of a seismological event</li>
+<li><strong>event_hash</strong> &#8211; (optional) hash code of event (see:
+<code class="xref py py-meth docutils literal"><span class="pre">pyrocko.model.Event.get_hash()</span></code>)</li>
+<li><strong>event_time</strong> &#8211; (optional) time of the associated event</li>
+<li><strong>phasename</strong> &#8211; (optional) name of the phase associated with the marker</li>
+<li><strong>polarity</strong> &#8211; (optional) polarity of arriving phase</li>
+<li><strong>automatic</strong> &#8211; (optional)</li>
+<li><strong>incident_angle</strong> &#8211; (optional) incident angle of phase</li>
+<li><strong>takeoff_angle</strong> &#8211; (optional) take off angle of phase</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pyrocko.marker.PhaseMarker.get_event">
+<code class="descname">get_event</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#PhaseMarker.get_event"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.PhaseMarker.get_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an instance of the <a class="reference internal" href="model.html#pyrocko.model.Event" title="pyrocko.model.Event"><code class="xref py py-class docutils literal"><span class="pre">pyrocko.model.Event</span></code></a> associated
+to this <a class="reference internal" href="#pyrocko.marker.EventMarker" title="pyrocko.marker.EventMarker"><code class="xref py py-class docutils literal"><span class="pre">EventMarker</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pyrocko.marker.load_markers">
+<code class="descname">load_markers</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#load_markers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.load_markers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load markers from file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> &#8211; filename as string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of <a class="reference internal" href="#pyrocko.marker.Marker" title="pyrocko.marker.Marker"><code class="xref py py-class docutils literal"><span class="pre">Marker</span></code></a> Objects</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyrocko.marker.save_markers">
+<code class="descname">save_markers</code><span class="sig-paren">(</span><em>markers</em>, <em>filename</em>, <em>fdigits=3</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#save_markers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.save_markers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save markers to file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>markers</strong> &#8211; list of <a class="reference internal" href="#pyrocko.marker.Marker" title="pyrocko.marker.Marker"><code class="xref py py-class docutils literal"><span class="pre">Marker</span></code></a> Objects</li>
+<li><strong>filename</strong> &#8211; filename as string</li>
+<li><strong>fdigits</strong> &#8211; number of decimal digits to use for sub-second time strings</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyrocko.marker.associate_phases_to_events">
+<code class="descname">associate_phases_to_events</code><span class="sig-paren">(</span><em>markers</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/marker.html#associate_phases_to_events"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.marker.associate_phases_to_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reassociate phases to events after import from markers file.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+    &nbsp;
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="model.html" title="The model module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="io.html" title="The io module"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, The Pyrocko Developers.
+    </div>
+  </body>
+</html>

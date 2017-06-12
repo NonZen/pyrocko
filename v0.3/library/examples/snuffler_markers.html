@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Snuffler markers &#8212; Pyrocko v0.3 Manual</title>
+    
+    <link rel="stylesheet" href="../../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/sidebar.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Pyrocko v0.3 Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Geodesic functions" href="orthodrome.html" />
+    <link rel="prev" title="Moment Tensor Operations" href="moment_tensor.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="../../_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+    
+
+  </head>
+  <body role="document">
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="../../index.html">Pyrocko v0.3 Manual</a> &#187;</li>
+          <li><a href="../index.html" >Library</a> &#187;</li>
+          <li><a href="index.html" accesskey="U">Examples</a> &#187;</li> 
+      </ul>
+    </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="snuffler-markers">
+<h1>Snuffler markers<a class="headerlink" href="#snuffler-markers" title="Permalink to this headline">¶</a></h1>
+<p>Snuffler&#8217;s markers are a simple way to transfer interactive selections and
+picks to a user script or, vice versa, to visualize processing results from a
+user script in the interactive waveform browser.</p>
+<p>Markers are handled in Pyrocko through the <a class="reference internal" href="../reference/marker.html#module-pyrocko.marker" title="pyrocko.marker"><code class="xref py py-mod docutils literal"><span class="pre">pyrocko.marker</span></code></a> module.
+They are represented by the <a class="reference internal" href="../reference/marker.html#pyrocko.marker.Marker" title="pyrocko.marker.Marker"><code class="xref py py-class docutils literal"><span class="pre">pyrocko.marker.Marker</span></code></a> class and the
+<a class="reference internal" href="../reference/marker.html#pyrocko.marker.EventMarker" title="pyrocko.marker.EventMarker"><code class="xref py py-class docutils literal"><span class="pre">pyrocko.marker.EventMarker</span></code></a> and
+<a class="reference internal" href="../reference/marker.html#pyrocko.marker.PhaseMarker" title="pyrocko.marker.PhaseMarker"><code class="xref py py-class docutils literal"><span class="pre">pyrocko.marker.PhaseMarker</span></code></a> subclasses. The functions
+<a class="reference internal" href="../reference/marker.html#pyrocko.marker.load_markers" title="pyrocko.marker.load_markers"><code class="xref py py-func docutils literal"><span class="pre">pyrocko.marker.load_markers()</span></code></a> and
+<a class="reference internal" href="../reference/marker.html#pyrocko.marker.save_markers" title="pyrocko.marker.save_markers"><code class="xref py py-func docutils literal"><span class="pre">pyrocko.marker.save_markers()</span></code></a> can be used to read and write markers in
+the file format used by Snuffler.</p>
+<div class="section" id="read-markers-from-file-exported-by-snuffler">
+<h2>Read markers from file exported by Snuffler<a class="headerlink" href="#read-markers-from-file-exported-by-snuffler" title="Permalink to this headline">¶</a></h2>
+<p>The following example shows how to read a Pyrocko marker file, how to
+reassociate any contained phases and events, and how to access the attached
+event information, which may be shared between different markers.</p>
+<p>Download <a class="reference download internal" href="../../_downloads/markers_example1.py" download=""><code class="xref download docutils literal"><span class="pre">markers_example1.py</span></code></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyrocko</span> <span class="kn">import</span> <span class="n">util</span><span class="p">,</span> <span class="n">marker</span> <span class="k">as</span> <span class="n">pm</span>
+
+<span class="n">markers</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">load_markers</span><span class="p">(</span><span class="s">&#39;my_markers.pf&#39;</span><span class="p">)</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">associate_phases_to_events</span><span class="p">(</span><span class="n">markers</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">marker</span> <span class="ow">in</span> <span class="n">markers</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">util</span><span class="o">.</span><span class="n">time_to_str</span><span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">tmin</span><span class="p">),</span> <span class="n">util</span><span class="o">.</span><span class="n">time_to_str</span><span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">tmax</span><span class="p">)</span>
+
+    <span class="c"># only event and phase markers have an event attached</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">EventMarker</span><span class="p">,</span> <span class="n">pm</span><span class="o">.</span><span class="n">PhaseMarker</span><span class="p">)):</span>
+        <span class="n">ev</span> <span class="o">=</span> <span class="n">marker</span><span class="o">.</span><span class="n">get_event</span><span class="p">()</span>
+        <span class="k">print</span> <span class="n">ev</span>  <span class="c"># may be shared between markers</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+    &nbsp;
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="orthodrome.html" title="Geodesic functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="moment_tensor.html" title="Moment Tensor Operations"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, The Pyrocko Developers.
+    </div>
+  </body>
+</html>

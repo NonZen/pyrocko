@@ -440,12 +440,12 @@
 </li>
       <li><a href="library/reference/pile.html#pyrocko.pile.Pile.all">all() (Pile method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/orthodrome.html#pyrocko.orthodrome.amap">amap() (in module pyrocko.orthodrome)</a>
 </li>
       <li><a href="library/reference/trace.html#pyrocko.trace.Trace.ampspec_whiten">ampspec_whiten() (Trace method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/trace.html#pyrocko.trace.AnalogFilterResponse">AnalogFilterResponse (class in pyrocko.trace)</a>
 </li>
       <li><a href="library/reference/fdsn.html#pyrocko.fdsn.station.Angle">Angle (class in pyrocko.fdsn.station)</a>
@@ -472,10 +472,18 @@
 </li>
       <li><a href="library/reference/fdsn.html#pyrocko.fdsn.station.Approximation">Approximation (class in pyrocko.fdsn.station)</a>
 </li>
+      <li><a href="library/reference/util.html#pyrocko.util.arange2">arange2() (in module pyrocko.util)</a>
+</li>
+      <li><a href="library/reference/util.html#pyrocko.util.ArangeError">ArangeError</a>
+</li>
       <li><a href="library/reference/cake.html#pyrocko.cake.LayeredModel.arrivals">arrivals() (LayeredModel method)</a>
 </li>
-      <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.associate_phases_to_events">associate_phases_to_events() (PileViewerMain method)</a>
+      <li><a href="library/reference/marker.html#pyrocko.marker.associate_phases_to_events">associate_phases_to_events() (in module pyrocko.marker)</a>
+
+      <ul>
+        <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.associate_phases_to_events">(PileViewerMain method)</a>
 </li>
+      </ul></li>
       <li><a href="library/reference/cake.html#pyrocko.cake.Material.astuple">astuple() (Material method)</a>
 </li>
       <li><a href="library/reference/cake.html#pyrocko.cake.Layer.at_bottom">at_bottom() (Layer method)</a>
@@ -683,10 +691,10 @@
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.clean_update">clean_update() (PileViewerMain method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/snuffling.html#pyrocko.snuffling.Snuffling.cleanup">cleanup() (Snuffling method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.clear_blacklist">clear_blacklist() (PileViewerMain method)</a>
 </li>
       <li><a href="library/reference/snuffling.html#pyrocko.snuffling.Snuffling.clear_button_triggered">clear_button_triggered() (Snuffling method)</a>
@@ -751,9 +759,11 @@
 </li>
       <li><a href="library/reference/cake.html#pyrocko.cake.Knee.conversion">conversion (Knee attribute)</a>
 </li>
-      <li><a href="library/reference/cake.html#pyrocko.cake.PhaseDef.copy">copy() (PhaseDef method)</a>
+      <li><a href="library/reference/marker.html#pyrocko.marker.Marker.copy">copy() (Marker method)</a>
 
       <ul>
+        <li><a href="library/reference/cake.html#pyrocko.cake.PhaseDef.copy">(PhaseDef method)</a>
+</li>
         <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.Projection.copy">(Projection method)</a>
 </li>
         <li><a href="library/reference/cake.html#pyrocko.cake.RayPath.copy">(RayPath method)</a>
@@ -1079,6 +1089,8 @@
 </li>
       <li><a href="library/reference/model.html#pyrocko.model.Event">Event (class in pyrocko.model)</a>
 </li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.EventMarker">EventMarker (class in pyrocko.marker)</a>
+</li>
       <li><a href="library/reference/ims.html#pyrocko.ims.EventSection">EventSection (class in pyrocko.ims)</a>
 </li>
       <li><a href="library/reference/ims.html#pyrocko.ims.EventsSection">EventsSection (class in pyrocko.ims)</a>
@@ -1252,11 +1264,15 @@
       <li><a href="library/reference/catalog.html#pyrocko.catalog.EarthquakeCatalog.get_event">get_event() (EarthquakeCatalog method)</a>
 
       <ul>
+        <li><a href="library/reference/marker.html#pyrocko.marker.EventMarker.get_event">(EventMarker method)</a>
+</li>
         <li><a href="library/reference/catalog.html#pyrocko.catalog.Geofon.get_event">(Geofon method)</a>
 </li>
         <li><a href="library/reference/catalog.html#pyrocko.catalog.GlobalCMT.get_event">(GlobalCMT method)</a>
 </li>
         <li><a href="library/reference/catalog.html#pyrocko.catalog.Kinherd.get_event">(Kinherd method)</a>
+</li>
+        <li><a href="library/reference/marker.html#pyrocko.marker.PhaseMarker.get_event">(PhaseMarker method)</a>
 </li>
         <li><a href="library/reference/catalog.html#pyrocko.catalog.Saxony.get_event">(Saxony method)</a>
 </li>
@@ -1290,6 +1306,8 @@
       <li><a href="library/reference/catalog.html#pyrocko.catalog.Geofon.get_mt">get_mt() (Geofon method)</a>
 </li>
       <li><a href="library/reference/snuffling.html#pyrocko.snuffling.Snuffling.get_name">get_name() (Snuffling method)</a>
+</li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.Marker.get_nslc_ids">get_nslc_ids() (Marker method)</a>
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.get_nslc_ids_for_track">get_nslc_ids_for_track() (PileViewerMain method)</a>
 </li>
@@ -1337,10 +1355,10 @@
 </li>
       <li><a href="library/reference/rdseed.html#pyrocko.rdseed.SeedVolumeAccess.get_restitution">get_restitution() (SeedVolumeAccess method)</a>
 </li>
-      <li><a href="library/reference/gmtpy.html#pyrocko.gmtpy.Widget.get_root">get_root() (Widget method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="library/reference/gmtpy.html#pyrocko.gmtpy.Widget.get_root">get_root() (Widget method)</a>
+</li>
       <li><a href="library/reference/snuffling.html#pyrocko.snuffling.Snuffling.get_selected_event_markers">get_selected_event_markers() (Snuffling method)</a>
 </li>
       <li><a href="library/reference/snuffling.html#pyrocko.snuffling.Snuffling.get_selected_markers">get_selected_markers() (Snuffling method)</a>
@@ -1376,6 +1394,10 @@
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.get_time_range">get_time_range() (PileViewerMain method)</a>
 </li>
       <li><a href="library/reference/gf.html#pyrocko.gf.seismosizer.Source.get_timeshift">get_timeshift() (Source method)</a>
+</li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.Marker.get_tmax">get_tmax() (Marker method)</a>
+</li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.Marker.get_tmin">get_tmin() (Marker method)</a>
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewer.get_view">get_view() (PileViewer method)</a>
 </li>
@@ -1739,10 +1761,10 @@
 </li>
       <li><a href="library/reference/cake.html#pyrocko.cake.PhaseDef.legs">legs() (PhaseDef method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/gmtpy.html#pyrocko.gmtpy.Ax.limits">limits (Ax attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.LineEditWithAbort">LineEditWithAbort (class in pyrocko.pile_viewer)</a>
 </li>
       <li><a href="library/reference/gmtpy.html#pyrocko.gmtpy.LineStreamChopper">LineStreamChopper (class in pyrocko.gmtpy)</a>
@@ -1759,6 +1781,12 @@
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewer.load_inputline_history">load_inputline_history() (PileViewer method)</a>
 </li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.load_markers">load_markers() (in module pyrocko.marker)</a>
+
+      <ul>
+        <li><a href="library/reference/marker.html#pyrocko.marker.Marker.load_markers">(Marker static method)</a>
+</li>
+      </ul></li>
       <li><a href="library/reference/cake.html#pyrocko.cake.load_model">load_model() (in module pyrocko.cake)</a>
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.load_queued">load_queued() (PileViewerMain method)</a>
@@ -1851,14 +1879,22 @@
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.MakePileViewerMainClass">MakePileViewerMainClass() (in module pyrocko.pile_viewer)</a>
 </li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.Marker">Marker (class in pyrocko.marker)</a>
+</li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewer.marker_editor">marker_editor() (PileViewer method)</a>
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.marker_under_cursor">marker_under_cursor() (PileViewerMain method)</a>
 </li>
       <li><a href="library/reference/gmtpy.html#pyrocko.gmtpy.Ax.masking">masking (Ax attribute)</a>
 </li>
-      <li><a href="library/reference/util.html#pyrocko.util.match_nslc">match_nslc() (in module pyrocko.util)</a>
+      <li><a href="library/reference/marker.html#pyrocko.marker.Marker.match_nsl">match_nsl() (Marker method)</a>
 </li>
+      <li><a href="library/reference/util.html#pyrocko.util.match_nslc">match_nslc() (in module pyrocko.util)</a>
+
+      <ul>
+        <li><a href="library/reference/marker.html#pyrocko.marker.Marker.match_nslc">(Marker method)</a>
+</li>
+      </ul></li>
       <li><a href="library/reference/util.html#pyrocko.util.match_nslcs">match_nslcs() (in module pyrocko.util)</a>
 </li>
       <li><a href="library/reference/cake.html#pyrocko.cake.Knee.matches">matches() (Knee method)</a>
@@ -1877,12 +1913,12 @@
       </ul></li>
       <li><a href="library/reference/crustdb.html#pyrocko.crustdb.CrustDB.meanVelocity">meanVelocity() (CrustDB method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/crustdb.html#pyrocko.crustdb.CrustDB.medianVelocity">medianVelocity() (CrustDB method)</a>
 </li>
       <li><a href="library/reference/snuffling.html#pyrocko.snuffling.Snuffling.menuitem_triggered">menuitem_triggered() (Snuffling method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/trace.html#pyrocko.trace.merge_codes">merge_codes() (in module pyrocko.trace)</a>
 </li>
       <li><a href="library/reference/ims.html#pyrocko.ims.MessageHeader">MessageHeader (class in pyrocko.ims)</a>
@@ -2049,6 +2085,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.ObjectStyle">ObjectStyle (class in pyrocko.pile_viewer)</a>
 </li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.Marker.one_nslc">one_nslc() (Marker method)</a>
+</li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.open_link">open_link() (PileViewerMain method)</a>
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.open_stations">open_stations() (PileViewerMain method)</a>
@@ -2063,10 +2101,10 @@
 </li>
       <li><a href="library/reference/ims.html#pyrocko.ims.Origin">Origin (class in pyrocko.ims)</a>
 </li>
-      <li><a href="library/reference/ims.html#pyrocko.ims.OriginSection">OriginSection (class in pyrocko.ims)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="library/reference/ims.html#pyrocko.ims.OriginSection">OriginSection (class in pyrocko.ims)</a>
+</li>
       <li><a href="library/reference/ims.html#pyrocko.ims.OUT2">OUT2 (class in pyrocko.ims)</a>
 </li>
       <li><a href="library/reference/ims.html#pyrocko.ims.OUT2Section">OUT2Section (class in pyrocko.ims)</a>
@@ -2142,6 +2180,8 @@
       <li><a href="library/reference/cake.html#pyrocko.cake.PhaseDef">PhaseDef (class in pyrocko.cake)</a>
 </li>
       <li><a href="library/reference/cake.html#pyrocko.cake.PhaseDefParseError">PhaseDefParseError</a>
+</li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.PhaseMarker">PhaseMarker (class in pyrocko.marker)</a>
 </li>
       <li><a href="library/reference/gf.html#pyrocko.gf.meta.PhaseSelect">PhaseSelect (class in pyrocko.gf.meta)</a>
 </li>
@@ -2330,6 +2370,8 @@
       <li><a href="library/reference/ims.html#module-pyrocko.ims">pyrocko.ims (module)</a>
 </li>
       <li><a href="library/reference/io.html#module-pyrocko.io">pyrocko.io (module)</a>
+</li>
+      <li><a href="library/reference/marker.html#module-pyrocko.marker">pyrocko.marker (module)</a>
 </li>
       <li><a href="library/reference/model.html#module-pyrocko.model">pyrocko.model (module)</a>
 </li>
@@ -2549,6 +2591,12 @@
       </ul></li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewer.save_inputline_history">save_inputline_history() (PileViewer method)</a>
 </li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.save_markers">save_markers() (in module pyrocko.marker)</a>
+
+      <ul>
+        <li><a href="library/reference/marker.html#pyrocko.marker.Marker.save_markers">(Marker static method)</a>
+</li>
+      </ul></li>
       <li><a href="library/reference/gmtpy.html#pyrocko.gmtpy.savegrd">savegrd() (in module pyrocko.gmtpy)</a>
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.savesvg">savesvg() (PileViewerMain method)</a>
@@ -2615,6 +2663,8 @@
 </li>
       <li><a href="library/reference/ims.html#pyrocko.ims.SerializeError">SerializeError</a>
 </li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.Marker.set">set() (Marker method)</a>
+</li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.set_active_event">set_active_event() (PileViewerMain method)</a>
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.PileViewerMain.set_active_event_marker">set_active_event_marker() (PileViewerMain method)</a>
@@ -2642,6 +2692,8 @@
       <li><a href="library/reference/gmtpy.html#pyrocko.gmtpy.Widget.set_horizontal">set_horizontal() (Widget method)</a>
 </li>
       <li><a href="library/reference/pile_viewer.html#pyrocko.pile_viewer.Projection.set_in_range">set_in_range() (Projection method)</a>
+</li>
+      <li><a href="library/reference/marker.html#pyrocko.marker.Marker.set_kind">set_kind() (Marker method)</a>
 </li>
       <li><a href="library/reference/crust2x2.html#pyrocko.crust2x2.Crust2Profile.set_layer_thickness">set_layer_thickness() (Crust2Profile method)</a>
 </li>
@@ -2711,12 +2763,12 @@
       </ul></li>
       <li><a href="library/reference/trace.html#pyrocko.trace.Trace.set_ydata">set_ydata() (Trace method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/snuffling.html#pyrocko.snuffling.Snuffling.setup">setup() (Snuffling method)</a>
 </li>
       <li><a href="library/reference/response_plot.html#pyrocko.response_plot.setup_axes">setup_axes() (in module pyrocko.response_plot)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/reference/snuffling.html#pyrocko.snuffling.Snuffling.setup_gui">setup_gui() (Snuffling method)</a>
 </li>
       <li><a href="library/reference/util.html#pyrocko.util.setup_logging">setup_logging() (in module pyrocko.util)</a>
@@ -2835,6 +2887,8 @@
       <li><a href="library/reference/ims.html#pyrocko.ims.STA2">STA2 (class in pyrocko.ims)</a>
 </li>
       <li><a href="library/reference/trace.html#pyrocko.trace.Trace.sta_lta_centered">sta_lta_centered() (Trace method)</a>
+</li>
+      <li><a href="library/reference/trace.html#pyrocko.trace.Trace.sta_lta_right">sta_lta_right() (Trace method)</a>
 </li>
       <li><a href="library/reference/ims.html#pyrocko.ims.Stage">Stage (class in pyrocko.ims)</a>
 </li>

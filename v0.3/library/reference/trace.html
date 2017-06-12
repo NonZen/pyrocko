@@ -577,6 +577,64 @@ scaled / normalized (<code class="docutils literal"><span class="pre">1</span></
 </dd></dl>
 
 <dl class="method">
+<dt id="pyrocko.trace.Trace.sta_lta_right">
+<code class="descname">sta_lta_right</code><span class="sig-paren">(</span><em>tshort</em>, <em>tlong</em>, <em>quad=True</em>, <em>scalingmethod=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/trace.html#Trace.sta_lta_right"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.trace.Trace.sta_lta_right" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run special STA/LTA filter where the short time window is overlapping
+with the last part of the long time window.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tshort</strong> &#8211; length of short time window in [s]</li>
+<li><strong>tlong</strong> &#8211; length of long time window in [s]</li>
+<li><strong>quad</strong> &#8211; whether to square the data prior to applying the STA/LTA
+filter</li>
+<li><strong>scalingmethod</strong> &#8211; integer key to select how output values are
+scaled / normalized (<code class="docutils literal"><span class="pre">1</span></code>, <code class="docutils literal"><span class="pre">2</span></code>, or <code class="docutils literal"><span class="pre">3</span></code>)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="61%" />
+<col width="18%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Scalingmethod</th>
+<th class="head">Implementation</th>
+<th class="head">Range</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">1</span></code></td>
+<td>As/Al* Tl/Ts</td>
+<td>[0,1]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">2</span></code></td>
+<td>(As/Al - 1) / (Tl/Ts - 1)</td>
+<td>[-Ts/Tl,1]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">3</span></code></td>
+<td>Like <code class="docutils literal"><span class="pre">2</span></code> but clipping range at zero</td>
+<td>[0,1]</td>
+</tr>
+</tbody>
+</table>
+<p>With <code class="docutils literal"><span class="pre">scalingmethod=1</span></code>, the values produced by this variant of the
+STA/LTA are equivalent to</p>
+<div class="math">
+<p><img src="../../_images/math/a611668fbb2a371881631f2b261d6dc1bd9a96b7.svg" alt="s_i = \frac{s}{l} \frac{\frac{1}{s}\sum_{j=i}{i+s-1} f_j}
+                         {\frac{1}{l}\sum_{j=i+s-l}^{i+s-1} f_j}"/></p>
+</div><p>where <img class="math" src="../../_images/math/3828ad01cb2647e8344e0bf26e0a6d4678848bd1.svg" alt="f_j"/> are the input samples, <img class="math" src="../../_images/math/63751cb2e98ba393b0f22e45ca127c3cebb61487.svg" alt="s"/> are the number of
+samples in the short time window and <img class="math" src="../../_images/math/b359488b993294ebbc2c7b30ab8f749dcbc6826d.svg" alt="l"/> are the number of
+samples in the long time window.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyrocko.trace.Trace.peaks">
 <code class="descname">peaks</code><span class="sig-paren">(</span><em>threshold</em>, <em>tsearch</em>, <em>deadtime=False</em>, <em>nblock_duration_detection=100</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/trace.html#Trace.peaks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.trace.Trace.peaks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Detect peaks above given threshold.</p>
@@ -598,7 +656,8 @@ algorithm useful in combination with recursive STA/LTA filters.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>tmin</strong> &#8211; begin time of new span</li>
 <li><strong>tmax</strong> &#8211; end time of new span</li>
-<li><strong>fillmethod</strong> &#8211; &#8216;zeros&#8217; or &#8216;repeat&#8217;</li>
+<li><strong>fillmethod</strong> &#8211; <code class="docutils literal"><span class="pre">'zeros'</span></code>,  <code class="docutils literal"><span class="pre">'repeat'</span></code>, <code class="docutils literal"><span class="pre">'mean'</span></code>, or
+<code class="docutils literal"><span class="pre">'median'</span></code></li>
 </ul>
 </td>
 </tr>
@@ -803,16 +862,16 @@ standard deviation times <code class="docutils literal"><span class="pre">mode</
 </tbody>
 </table>
 <p>Examples:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ranges</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">tr</span><span class="p">:</span> <span class="n">tr</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
-<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">]</span>   <span class="c1"># print min &amp; max of all traces with channel == &#39;N&#39;</span>
-<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>   <span class="c1"># print min &amp; max of all traces with channel == &#39;E&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">ranges</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">tr</span><span class="p">:</span> <span class="n">tr</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s">&#39;N&#39;</span><span class="p">]</span>   <span class="c"># print min &amp; max of all traces with channel == &#39;N&#39;</span>
+<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s">&#39;E&#39;</span><span class="p">]</span>   <span class="c"># print min &amp; max of all traces with channel == &#39;E&#39;</span>
 
 <span class="n">ranges</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">tr</span><span class="p">:</span> <span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">tr</span><span class="o">.</span><span class="n">station</span><span class="p">))</span>
-<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s1">&#39;GR&#39;</span><span class="p">,</span> <span class="s1">&#39;HAM3&#39;</span><span class="p">]</span>  <span class="c1"># print min &amp; max of all traces with</span>
-                            <span class="c1"># network == &#39;GR&#39; and station == &#39;HAM3&#39;</span>
+<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="s">&#39;GR&#39;</span><span class="p">,</span> <span class="s">&#39;HAM3&#39;</span><span class="p">]</span>  <span class="c"># print min &amp; max of all traces with</span>
+                            <span class="c"># network == &#39;GR&#39; and station == &#39;HAM3&#39;</span>
 
-<span class="n">ranges</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">tr</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
-<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span>  <span class="c1"># prints min &amp; max of all traces</span>
+<span class="n">ranges</span> <span class="o">=</span> <span class="n">minmax</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">tr</span><span class="p">:</span> <span class="k">None</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">ranges</span><span class="p">[</span><span class="k">None</span><span class="p">]</span>  <span class="c"># prints min &amp; max of all traces</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -977,17 +1036,17 @@ evaluates the discrete equivalent of</p>
 <div class="math">
 <p><img src="../../_images/math/aa8bfd4c15d285e27a2fd4709bd7f6cc0d8e5854.svg" alt="c(t) = \int_{-\infty}^{\infty} a^{\ast}(\tau) b(t+\tau) d\tau"/></p>
 </div><p>where the star denotes complex conjugate. Note, that the arguments here are
-swapped when compared with the <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate" title="(in NumPy v1.12)"><code class="xref py py-func docutils literal"><span class="pre">numpy.correlate()</span></code></a> function,
+swapped when compared with the <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate" title="(in NumPy v1.13)"><code class="xref py py-func docutils literal"><span class="pre">numpy.correlate()</span></code></a> function,
 which is internally called. This function should be safe even with older
 versions of NumPy, where the correlate function has some problems.</p>
 <p>A trace containing the cross correlation coefficients is returned. The time
 information of the output trace is set so that the returned cross
 correlation can be viewed directly as a function of time lag.</p>
 <p>Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># align two traces a and b containing a time shifted similar signal:</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="c"># align two traces a and b containing a time shifted similar signal:</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">pyrocko</span><span class="o">.</span><span class="n">trace</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
-<span class="n">t</span><span class="p">,</span> <span class="n">coef</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>  <span class="c1"># get time and value of maximum</span>
-<span class="n">b</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>        <span class="c1"># align b with a</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">coef</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>  <span class="c"># get time and value of maximum</span>
+<span class="n">b</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>        <span class="c"># align b with a</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1233,7 +1292,7 @@ deconvolution of instrument response.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span>                  <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">zeros</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="o">...</span>
+<div class="highlight-default"><div class="highlight"><pre>                  <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">zeros</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="o">...</span>
 <span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">=</span> <span class="n">constant</span> <span class="o">*</span> <span class="o">----------------------------------------------------</span>
                   <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">poles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span> <span class="o">-</span> <span class="n">poles</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="o">...</span>
 </pre></div>
@@ -1317,13 +1376,13 @@ function.</li>
 <dl class="gattribute">
 <dt id="pyrocko.trace.SampledResponse.frequencies">
 <em class="property">♦ </em><code class="descname">frequencies</code><a class="headerlink" href="#pyrocko.trace.SampledResponse.frequencies" title="Permalink to this definition">¶</a></dt>
-<dd><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.12)"><code class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></code></a> (<code class="xref py py-class docutils literal"><span class="pre">pyrocko.guts_array.Array</span></code>)</p>
+<dd><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.13)"><code class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></code></a> (<code class="xref py py-class docutils literal"><span class="pre">pyrocko.guts_array.Array</span></code>)</p>
 </dd></dl>
 
 <dl class="gattribute">
 <dt id="pyrocko.trace.SampledResponse.values">
 <em class="property">♦ </em><code class="descname">values</code><a class="headerlink" href="#pyrocko.trace.SampledResponse.values" title="Permalink to this definition">¶</a></dt>
-<dd><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.12)"><code class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></code></a> (<code class="xref py py-class docutils literal"><span class="pre">pyrocko.guts_array.Array</span></code>)</p>
+<dd><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.13)"><code class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></code></a> (<code class="xref py py-class docutils literal"><span class="pre">pyrocko.guts_array.Array</span></code>)</p>
 </dd></dl>
 
 <dl class="gattribute">
@@ -1362,7 +1421,7 @@ function.</li>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span>            <span class="n">gain</span>
+<div class="highlight-default"><div class="highlight"><pre>            <span class="n">gain</span>
 <span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">=</span> <span class="o">--------------</span>
        <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span><span class="p">)</span><span class="o">^</span><span class="n">n</span>
 </pre></div>
@@ -1397,7 +1456,7 @@ function.</li>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">=</span> <span class="n">gain</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span><span class="p">)</span><span class="o">^</span><span class="n">n</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">=</span> <span class="n">gain</span> <span class="o">*</span> <span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span><span class="p">)</span><span class="o">^</span><span class="n">n</span>
 </pre></div>
 </div>
 <dl class="gattribute">
@@ -1454,7 +1513,7 @@ function.</li>
 <dl class="function">
 <dt id="pyrocko.trace.numpy_correlate_fixed">
 <code class="descname">numpy_correlate_fixed</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>mode='valid'</em>, <em>use_fft=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/trace.html#numpy_correlate_fixed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.trace.numpy_correlate_fixed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate" title="(in NumPy v1.12)"><code class="xref py py-func docutils literal"><span class="pre">numpy.correlate()</span></code></a> with fixes.</p>
+<dd><p>Call <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate" title="(in NumPy v1.13)"><code class="xref py py-func docutils literal"><span class="pre">numpy.correlate()</span></code></a> with fixes.</p>
 <blockquote>
 <div>c[k] = sum_i a[i+k] * conj(b[i])</div></blockquote>
 <p>Note that the result produced by newer numpy.correlate is always flipped
@@ -1465,13 +1524,13 @@ assumed for the output).</p>
 <dl class="function">
 <dt id="pyrocko.trace.numpy_correlate_emulate">
 <code class="descname">numpy_correlate_emulate</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>mode='valid'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/trace.html#numpy_correlate_emulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.trace.numpy_correlate_emulate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Slow version of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate" title="(in NumPy v1.12)"><code class="xref py py-func docutils literal"><span class="pre">numpy.correlate()</span></code></a> for comparison.</p>
+<dd><p>Slow version of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate" title="(in NumPy v1.13)"><code class="xref py py-func docutils literal"><span class="pre">numpy.correlate()</span></code></a> for comparison.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="pyrocko.trace.numpy_correlate_lag_range">
 <code class="descname">numpy_correlate_lag_range</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>mode='valid'</em>, <em>use_fft=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyrocko/trace.html#numpy_correlate_lag_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrocko.trace.numpy_correlate_lag_range" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get range of lags for which <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate" title="(in NumPy v1.12)"><code class="xref py py-func docutils literal"><span class="pre">numpy.correlate()</span></code></a> produces values.</p>
+<dd><p>Get range of lags for which <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.correlate.html#numpy.correlate" title="(in NumPy v1.13)"><code class="xref py py-func docutils literal"><span class="pre">numpy.correlate()</span></code></a> produces values.</p>
 </dd></dl>
 
 <dl class="function">
@@ -1509,7 +1568,7 @@ assumed for the output).</p>
 </tbody>
 </table>
 <p>A biased estimate of the autocorrelation is used. The Yule-Walker equations
-are solved by <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.inv.html#numpy.linalg.inv" title="(in NumPy v1.12)"><code class="xref py py-func docutils literal"><span class="pre">numpy.linalg.inv()</span></code></a> instead of Levinson-Durbin
+are solved by <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.inv.html#numpy.linalg.inv" title="(in NumPy v1.13)"><code class="xref py py-func docutils literal"><span class="pre">numpy.linalg.inv()</span></code></a> instead of Levinson-Durbin
 recursion which is normally used.</p>
 </dd></dl>
 
@@ -1542,7 +1601,7 @@ multichannel or multistation data with only one <a class="reference internal" hr
 instance.</p>
 <p>Filter state is reset, when gaps occur.</p>
 <p>Use it like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyrocko.trace</span> <span class="k">import</span> <span class="n">co_lfilter</span><span class="p">,</span> <span class="n">co_list_append</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyrocko.trace</span> <span class="k">import</span> <span class="n">co_lfilter</span><span class="p">,</span> <span class="n">co_list_append</span>
 
 <span class="n">filtered_traces</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">co_lfilter</span><span class="p">(</span><span class="n">co_list_append</span><span class="p">(</span><span class="n">filtered_traces</span><span class="p">),</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
